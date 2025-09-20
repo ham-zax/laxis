@@ -1,0 +1,5 @@
+name: core
+description: Shared utilities, data models, services.
+
+dev_dependencies:
+  lints: ^5.1.1

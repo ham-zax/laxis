@@ -1,0 +1,17 @@
+name: app
+description: The main Flutter app, ties everything together.
+
+dependencies:
+  flutter:
+    sdk: flutter
+  laxis_ui:
+    path: ../laxis_ui
+  german_language_module:
+    path: ../german_language_module
+  core:
+    path: ../core
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0

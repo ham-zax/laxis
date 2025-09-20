@@ -1,0 +1,9 @@
+name: laxis_engine
+description: Core gameplay logic (Dart only).
+
+dependencies:
+  language_module_interface:
+    path: ../language_module_interface
+
+dev_dependencies:
+  lints: ^5.1.1

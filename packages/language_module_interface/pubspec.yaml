@@ -1,0 +1,5 @@
+name: language_module_interface
+description: The contract (abstract classes/interfaces, Dart only).
+
+dev_dependencies:
+  lints: ^5.1.1
