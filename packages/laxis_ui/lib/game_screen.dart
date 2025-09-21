@@ -21,6 +21,7 @@ class _GameScreenState extends State<GameScreen> {
   late final LaxisEngine _engine;
   lmi.Quest? _currentQuest;
   List<lmi.Card> _cards = [];
+  Set<String> _usedCards = {};
 
   @override
   void initState() {
@@ -39,6 +40,7 @@ class _GameScreenState extends State<GameScreen> {
   void _loadNextQuest() {
     setState(() {
       _currentQuest = _engine.getNextQuest(widget.level);
+      _usedCards.clear();
       if (_currentQuest != null) {
         _cards = _engine.getCardsForQuest(_currentQuest!);
       }
@@ -50,6 +52,18 @@ class _GameScreenState extends State<GameScreen> {
       _engine.completeQuest(_currentQuest!.id, widget.level);
       _loadNextQuest();
     }
+  }
+
+  void _onCardUsed(String cardText) {
+    setState(() {
+      _usedCards.add(cardText);
+    });
+  }
+
+  void _onCardRemoved(String cardText) {
+    setState(() {
+      _usedCards.remove(cardText);
+    });
   }
 
   @override
@@ -78,19 +92,53 @@ class _GameScreenState extends State<GameScreen> {
                 children: [
                   QuestWidget(prompt: _currentQuest!.prompt),
                   const SizedBox(height: 20),
-                  SentenceBuildingMat(onCorrect: _onQuestCompleted, solution: _currentQuest!.solution.map((id) => _engine.languageModuleData!.cards.firstWhere((c) => c.id == id).text).toList()),
+                  SentenceBuildingMat(
+                    onCorrect: _onQuestCompleted,
+                    solution: _currentQuest!.solution.map((id) =>
+                      _engine.languageModuleData!.cards.firstWhere((c) => c.id == id).text
+                    ).toList(),
+                    onCardUsed: _onCardUsed,
+                    onCardRemoved: _onCardRemoved,
+                  ),
                   const SizedBox(height: 20),
-                  Wrap(
-                    spacing: 8.0,
-                    runSpacing: 4.0,
-                    children: _cards.map((card) {
-                      return Draggable<String>(
-                        data: card.text,
-                        feedback: CardWidget(text: card.text),
-                        childWhenDragging: const SizedBox(),
-                        child: CardWidget(text: card.text),
-                      );
-                    }).toList(),
+                  Container(
+                    padding: const EdgeInsets.all(16),
+                    decoration: BoxDecoration(
+                      color: Colors.grey[50],
+                      borderRadius: BorderRadius.circular(12),
+                      border: Border.all(color: Colors.grey[300]!),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Available Cards:',
+                          style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                            fontWeight: FontWeight.w600,
+                            color: Colors.grey[700],
+                          ),
+                        ),
+                        const SizedBox(height: 12),
+                        Wrap(
+                          spacing: 8.0,
+                          runSpacing: 8.0,
+                          children: _cards.map((card) {
+                            final isUsed = _usedCards.contains(card.text);
+                            return CardWidget(
+                              text: card.text,
+                              isDraggable: !isUsed,
+                              isUsed: isUsed,
+                              onDragStarted: () {
+                                // Optional: Add haptic feedback or sound
+                              },
+                              onDragEnd: () {
+                                // Optional: Add completion feedback
+                              },
+                            );
+                          }).toList(),
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),
