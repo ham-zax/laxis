@@ -10,6 +10,13 @@ export 'widgets/layout.dart';
 // Screens
 export 'screens/level_selection_screen_overhauled.dart';
 export 'screens/game_screen_overhauled.dart';
+export 'screens/library_screen.dart';
+export 'screens/deck_editor_screen.dart';
+export 'screens/learn_hub_screen.dart';
+export 'screens/flashcard_review_screen.dart';
+export 'screens/quick_match_screen.dart';
+export 'screens/review_queue_screen.dart';
+export 'screens/sentence_builder_play_screen.dart';
 
 // Legacy screens
 export 'sentence_building_mat.dart';

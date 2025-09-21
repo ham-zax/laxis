@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import '../theme/app_theme.dart';
 // import '../widgets/gamification_widgets.dart';
 import '../widgets/layout.dart';
+import 'flashcard_review_screen.dart';
+import 'learn_hub_screen.dart';
 import '../screens/game_screen_overhauled.dart';
 
 class LevelSelectionScreenOverhauled extends StatefulWidget {
@@ -113,6 +115,7 @@ class _LevelSelectionScreenOverhauledState
                         SectionCard(
                           child: _buildLevelCard(
                             context,
+                            levelId: 'a1',
                             title: 'A1: Foundations',
                             description: 'Perfect for absolute beginners',
                             subtitle: 'Basic words and phrases',
@@ -130,6 +133,7 @@ class _LevelSelectionScreenOverhauledState
                         SectionCard(
                           child: _buildLevelCard(
                             context,
+                            levelId: 'a2',
                             title: 'A2: Advancement',
                             description: 'Build on your foundation',
                             subtitle: 'Simple conversations',
@@ -147,6 +151,7 @@ class _LevelSelectionScreenOverhauledState
                         SectionCard(
                           child: _buildLevelCard(
                             context,
+                            levelId: 'b1',
                             title: 'B1: Intermediate',
                             description: 'Express yourself confidently',
                             subtitle: 'Complex grammar & vocabulary',
@@ -177,6 +182,7 @@ class _LevelSelectionScreenOverhauledState
 
   Widget _buildLevelCard(
     BuildContext context, {
+    required String levelId,
     required String title,
     required String description,
     required String subtitle,
@@ -251,6 +257,19 @@ class _LevelSelectionScreenOverhauledState
                                     ),
                               ),
                             ),
+                            if (!isLocked) ...[
+                              IconButton(
+                                tooltip: 'Flashcards',
+                                icon: const Icon(Icons.menu_book),
+                                color: AppTheme.primaryBlue,
+                                onPressed: () {
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) =>
+                                        FlashcardReviewScreen(deckId: levelId),
+                                  ));
+                                },
+                              ),
+                            ],
                             if (isCompleted)
                               Icon(
                                 Icons.check_circle,
@@ -359,7 +378,7 @@ class _LevelSelectionScreenOverhauledState
     Navigator.of(context).push(
       PageRouteBuilder(
         pageBuilder: (context, animation, secondaryAnimation) =>
-            GameScreenOverhauled(level: level),
+            LearnHubScreen(deckId: level),
         transitionsBuilder: (context, animation, secondaryAnimation, child) {
           return SlideTransition(
             position: Tween<Offset>(

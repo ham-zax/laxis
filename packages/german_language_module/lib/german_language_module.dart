@@ -1,12 +1,12 @@
 import 'dart:convert';
 import 'package:flutter/services.dart';
 import 'package:language_module_interface/language_module_interface.dart';
-
+ 
 class GermanLanguageModule implements LanguageModule {
   final String level;
-
+ 
   GermanLanguageModule(this.level);
-
+ 
   @override
   Future<LanguageModuleData> load() async {
     try {
@@ -32,7 +32,7 @@ class GermanLanguageModule implements LanguageModule {
       return _createFallbackModule();
     }
   }
-
+ 
   LanguageModuleData _createFallbackModule() {
     return LanguageModuleData(
       id: 'german_$level',
@@ -74,5 +74,35 @@ class GermanLanguageModule implements LanguageModule {
         ),
       ],
     );
+  }
+ 
+  /// Export the loaded language module content as one or more Deck-shaped
+  /// JSON maps compatible with the core Deck model. This lets the app
+  /// register curated starter decks in the user's Library.
+  @override
+  Future<List<Map<String, dynamic>>> exportDecks() async {
+    // Use the module loader to get canonical data
+    final data = await load();
+ 
+    final deckMap = {
+      'id': data.id, // e.g. "german_a1"
+      'name': data.name,
+      'description': null,
+      'cards': data.cards
+          .map((c) => {
+                'id': c.id,
+                'text': c.text,
+                'translation': c.translation,
+                'conceptId': c.conceptId,
+                'notes': null,
+                'imagePath': null,
+                'audioPath': null,
+              })
+          .toList(),
+      'createdAt': DateTime.now().toIso8601String(),
+      'updatedAt': DateTime.now().toIso8601String(),
+    };
+ 
+    return [deckMap];
   }
 }

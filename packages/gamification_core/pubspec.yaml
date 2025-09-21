@@ -1,0 +1,15 @@
+name: laxis_gamification_core
+description: Minimal read-only gamification core.
+version: 0.0.1
+
+environment:
+  sdk: ^3.6.0
+
+dependencies:
+  laxis_gamification_api:
+    path: ../gamification_api
+  core:
+    path: ../core
+
+dev_dependencies:
+  test: ^1.24.0

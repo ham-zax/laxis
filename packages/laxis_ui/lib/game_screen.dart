@@ -29,6 +29,7 @@ class _GameScreenState extends State<GameScreen> {
     _engine = LaxisEngine(
       languageModule: GermanLanguageModule(widget.level),
       progressService: ProgressService(),
+      deckService: DeckService(),
     );
     _engine.loadModule().then((_) {
       _engine.loadProgress('user1').then((_) {

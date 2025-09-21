@@ -1,21 +1,47 @@
 import 'dart:math';
 import 'package:language_module_interface/language_module_interface.dart';
 import 'package:core/core.dart';
-
+ 
 extension IterableExtension<T> on Iterable<T> {
   T? get firstOrNull => isEmpty ? null : first;
 }
-
+ 
 class LaxisEngine {
   final LanguageModule languageModule;
   final ProgressService progressService;
+  final DeckService? deckService;
   LanguageModuleData? languageModuleData;
   Progress? _progress;
-
-  LaxisEngine({required this.languageModule, required this.progressService});
-
+ 
+  LaxisEngine({
+    required this.languageModule,
+    required this.progressService,
+    this.deckService,
+  });
+ 
   Future<void> loadModule() async {
     languageModuleData = await languageModule.load();
+ 
+    // If the module exposes curated starter decks, register them in DeckService
+    // so they appear in the Library for new users.
+    if (deckService != null) {
+      try {
+        final exported = await languageModule.exportDecks();
+        for (final deckMap in exported) {
+          try {
+            final deck = Deck.fromJson(Map<String, dynamic>.from(deckMap));
+            final existing = await deckService!.loadDeck(deck.id);
+            if (existing == null) {
+              await deckService!.saveDeck(deck);
+            }
+          } catch (_) {
+            // Ignore individual export errors and continue with others
+          }
+        }
+      } catch (_) {
+        // Ignore export failures to avoid breaking module load
+      }
+    }
   }
 
   Future<void> loadProgress(String userId) async {

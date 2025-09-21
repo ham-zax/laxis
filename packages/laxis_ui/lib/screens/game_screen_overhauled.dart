@@ -60,6 +60,7 @@ class _GameScreenOverhauledState extends State<GameScreenOverhauled>
     _engine = LaxisEngine(
       languageModule: GermanLanguageModule(widget.level),
       progressService: ProgressService(),
+      deckService: DeckService(),
     );
     _engine.loadModule().then((_) {
       _engine.loadProgress('user1').then((_) {
