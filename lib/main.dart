@@ -12,11 +12,8 @@ class LaxisApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Laxis - Language Learning Game',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: const LevelSelectionScreen(),
+      theme: AppTheme.lightTheme,
+      home: const LevelSelectionScreenOverhauled(),
       debugShowCheckedModeBanner: false,
     );
   }
