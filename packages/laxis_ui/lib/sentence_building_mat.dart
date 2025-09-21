@@ -67,7 +67,7 @@ class _SentenceBuildingMatState extends State<SentenceBuildingMat>
     setState(() {
       _isCorrect = true;
     });
-    
+
     // Clear the mat and return cards to available state
     Future.delayed(const Duration(milliseconds: 1000), () {
       _clearMatAndNotify();
@@ -120,7 +120,7 @@ class _SentenceBuildingMatState extends State<SentenceBuildingMat>
   Widget build(BuildContext context) {
     return Column(
       children: [
-        // Drop target area
+        // Drop target area - Duolingo style sentence building
         AnimatedBuilder(
           animation: _shakeAnimation,
           builder: (context, child) {
@@ -130,129 +130,105 @@ class _SentenceBuildingMatState extends State<SentenceBuildingMat>
                 onWillAcceptWithDetails: (details) {
                   setState(() => _isDragOver = true);
                   final data = details.data;
-                  return data != null && data['id'] != null && data['text'] != null;
+                  // Only accept if card is not already placed
+                  return data['id'] != null &&
+                      data['text'] != null &&
+                      !_placedCards.any((card) => card['id'] == data['id']);
                 },
                 onLeave: (_) => setState(() => _isDragOver = false),
                 onAcceptWithDetails: (details) {
                   final data = details.data;
-                  setState(() {
-                    _placedCards.add(data);
-                    _isCorrect = null;
-                    _isDragOver = false;
-                  });
-                  widget.onCardUsed?.call(data['id']!);
+                  // Double-check the card isn't already placed to prevent duplication
+                  if (!_placedCards.any((card) => card['id'] == data['id'])) {
+                    setState(() {
+                      _placedCards.add(data);
+                      _isCorrect = null;
+                      _isDragOver = false;
+                    });
+                    widget.onCardUsed?.call(data['id']!);
+                  } else {
+                    setState(() => _isDragOver = false);
+                  }
                 },
                 builder: (context, candidateData, rejectedData) {
                   return AnimatedContainer(
                     duration: const Duration(milliseconds: 200),
-                    height: 200,
+                    height: 80,
                     width: double.infinity,
                     decoration: BoxDecoration(
                       color: _isDragOver
                           ? Colors.blue[50]
-                          : (_isCorrect == false ? Colors.red[50] : Colors.grey[200]),
+                          : (_isCorrect == false
+                              ? Colors.red[50]
+                              : Colors.grey[100]),
                       border: Border.all(
                         color: _isDragOver
                             ? Colors.blue
-                            : (_isCorrect == false ? Colors.red : Colors.grey),
+                            : (_isCorrect == false
+                                ? Colors.red
+                                : Colors.grey[300]!),
                         width: _isDragOver ? 2 : 1,
                       ),
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: _placedCards.isEmpty
                         ? Center(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Icon(
-                                  _isDragOver
-                                      ? Icons.add_circle_outline
-                                      : Icons.drag_indicator,
-                                  size: 48,
-                                  color: _isDragOver
-                                      ? Colors.blue
-                                      : Colors.grey[400],
-                                ),
-                                const SizedBox(height: 8),
-                                Text(
-                                  _isDragOver
-                                      ? 'Drop card here'
-                                      : 'Drag cards here to build your sentence',
-                                  style: TextStyle(
-                                    color: _isDragOver
-                                        ? Colors.blue
-                                        : Colors.grey[600],
-                                    fontSize: 16,
-                                  ),
-                                ),
-                              ],
+                            child: Text(
+                              _isDragOver
+                                  ? 'Drop card here'
+                                  : 'Drag cards here to build your sentence',
+                              style: TextStyle(
+                                color: _isDragOver
+                                    ? Colors.blue
+                                    : Colors.grey[600],
+                                fontSize: 16,
+                              ),
                             ),
                           )
-                        : ReorderableListView.builder(
-                            scrollDirection: Axis.horizontal,
-                            buildDefaultDragHandles: false,
-                            physics: const BouncingScrollPhysics(),
-                            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
-                            onReorder: (oldIndex, newIndex) {
-                              setState(() {
-                                if (newIndex > oldIndex) newIndex -= 1;
-                                final item = _placedCards.removeAt(oldIndex);
-                                _placedCards.insert(newIndex, item);
-                                _isCorrect = null;
-                              });
-                            },
-                            itemCount: _placedCards.length,
-                            itemBuilder: (context, index) {
-                              final card = _placedCards[index];
-                              final text = card['text']!;
-                              return Container(
-                                key: ValueKey('mat_${card['id']}_$index'),
-                                margin: const EdgeInsets.symmetric(horizontal: 6),
-                                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  border: Border.all(color: Colors.grey[300]!),
-                                  borderRadius: BorderRadius.circular(8),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.black.withOpacity(0.1),
-                                      blurRadius: 4,
-                                      offset: const Offset(0, 2),
-                                    ),
-                                  ],
-                                ),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    Text(
-                                      text,
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w500,
+                        : Container(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 12, vertical: 8),
+                            child: SingleChildScrollView(
+                              scrollDirection: Axis.horizontal,
+                              child: Row(
+                                children:
+                                    _placedCards.asMap().entries.map((entry) {
+                                  final index = entry.key;
+                                  final card = entry.value;
+                                  final text = card['text']!;
+
+                                  return Container(
+                                    margin: const EdgeInsets.only(right: 8),
+                                    child: MouseRegion(
+                                      cursor: SystemMouseCursors.click,
+                                      child: GestureDetector(
+                                        onTap: () => _removeCard(index),
+                                        child: Container(
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 16, vertical: 10),
+                                          decoration: BoxDecoration(
+                                            color: Colors.blue[50],
+                                            border: Border.all(
+                                                color: Colors.blue[300]!,
+                                                width: 1),
+                                            borderRadius:
+                                                BorderRadius.circular(20),
+                                          ),
+                                          child: Text(
+                                            text,
+                                            style: TextStyle(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w500,
+                                              color: Colors.blue[800],
+                                            ),
+                                          ),
+                                        ),
                                       ),
                                     ),
-                                    const SizedBox(width: 8),
-                                    GestureDetector(
-                                      onTap: () => _removeCard(index),
-                                      child: Icon(
-                                        Icons.close,
-                                        size: 18,
-                                        color: Colors.grey[600],
-                                      ),
-                                    ),
-                                    const SizedBox(width: 4),
-                                    ReorderableDragStartListener(
-                                      index: index,
-                                      child: Icon(
-                                        Icons.drag_handle,
-                                        size: 18,
-                                        color: Colors.grey[600],
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              );
-                            },
+                                  );
+                                }).toList(),
+                              ),
+                            ),
                           ),
                   );
                 },
@@ -294,7 +270,8 @@ class _SentenceBuildingMatState extends State<SentenceBuildingMat>
                     Text(
                       _isCorrect! ? 'Correct!' : 'Try again',
                       style: TextStyle(
-                        color: _isCorrect! ? Colors.green[800] : Colors.red[800],
+                        color:
+                            _isCorrect! ? Colors.green[800] : Colors.red[800],
                         fontWeight: FontWeight.w600,
                       ),
                     ),
