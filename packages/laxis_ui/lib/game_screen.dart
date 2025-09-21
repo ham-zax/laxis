@@ -20,8 +20,8 @@ class GameScreen extends StatefulWidget {
 class _GameScreenState extends State<GameScreen> {
   late final LaxisEngine _engine;
   lmi.Quest? _currentQuest;
-  List<lmi.Card> _cards = [];
-  Set<String> _usedCards = {};
+  List<lmi.Card> _availableCards = [];
+  Set<String> _usedCardIds = {};
 
   @override
   void initState() {
@@ -40,9 +40,9 @@ class _GameScreenState extends State<GameScreen> {
   void _loadNextQuest() {
     setState(() {
       _currentQuest = _engine.getNextQuest(widget.level);
-      _usedCards.clear();
+      _usedCardIds.clear();
       if (_currentQuest != null) {
-        _cards = _engine.getCardsForQuest(_currentQuest!);
+        _availableCards = _engine.getCardsForQuest(_currentQuest!);
       }
     });
   }
@@ -54,16 +54,32 @@ class _GameScreenState extends State<GameScreen> {
     }
   }
 
-  void _onCardUsed(String cardText) {
+  void _onCardUsed(String cardId) {
     setState(() {
-      _usedCards.add(cardText);
+      _usedCardIds.add(cardId);
     });
   }
 
-  void _onCardRemoved(String cardText) {
+  void _onCardRemoved(String cardId) {
     setState(() {
-      _usedCards.remove(cardText);
+      _usedCardIds.remove(cardId);
     });
+  }
+
+  List<String> _getSolutionTexts() {
+    if (_currentQuest == null || _engine.languageModuleData == null) {
+      return [];
+    }
+    
+    return _currentQuest!.solution.map((cardId) {
+      try {
+        final card = _engine.languageModuleData!.cards
+            .firstWhere((c) => c.id == cardId);
+        return card.text;
+      } catch (e) {
+        return 'Unknown';
+      }
+    }).toList();
   }
 
   @override
@@ -94,9 +110,7 @@ class _GameScreenState extends State<GameScreen> {
                   const SizedBox(height: 20),
                   SentenceBuildingMat(
                     onCorrect: _onQuestCompleted,
-                    solution: _currentQuest!.solution.map((id) =>
-                      _engine.languageModuleData!.cards.firstWhere((c) => c.id == id).text
-                    ).toList(),
+                    solution: _currentQuest!.solution,
                     onCardUsed: _onCardUsed,
                     onCardRemoved: _onCardRemoved,
                   ),
@@ -119,23 +133,37 @@ class _GameScreenState extends State<GameScreen> {
                           ),
                         ),
                         const SizedBox(height: 12),
-                        Wrap(
-                          spacing: 8.0,
-                          runSpacing: 8.0,
-                          children: _cards.map((card) {
-                            final isUsed = _usedCards.contains(card.text);
-                            return CardWidget(
-                              text: card.text,
-                              isDraggable: !isUsed,
-                              isUsed: isUsed,
-                              onDragStarted: () {
-                                // Optional: Add haptic feedback or sound
-                              },
-                              onDragEnd: () {
-                                // Optional: Add completion feedback
-                              },
-                            );
-                          }).toList(),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Solution Preview: ${_getSolutionTexts().join(" ")}',
+                              style: TextStyle(
+                                fontSize: 12,
+                                color: Colors.grey[600],
+                                fontStyle: FontStyle.italic,
+                              ),
+                            ),
+                            const SizedBox(height: 12),
+                            Wrap(
+                              spacing: 8.0,
+                              runSpacing: 8.0,
+                              children: _availableCards.map((card) {
+                                final isUsed = _usedCardIds.contains(card.id);
+                                return DraggableCardWidget(
+                                  cardId: card.id,
+                                  text: card.text,
+                                  isUsed: isUsed,
+                                  onDragStarted: () {
+                                    // Optional: Add haptic feedback
+                                  },
+                                  onDragEnd: () {
+                                    // Optional: Add completion feedback
+                                  },
+                                );
+                              }).toList(),
+                            ),
+                          ],
                         ),
                       ],
                     ),

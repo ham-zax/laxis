@@ -1,33 +1,26 @@
 import 'package:flutter/material.dart';
 import 'conjugation_widget.dart';
 
-class CardWidget extends StatefulWidget {
+class CardWidget extends StatelessWidget {
   const CardWidget({
     super.key,
     required this.text,
-    this.isDraggable = true,
     this.isUsed = false,
-    this.onDragStarted,
-    this.onDragEnd,
+    this.elevation,
+    this.onTap,
   });
 
   final String text;
-  final bool isDraggable;
   final bool isUsed;
-  final VoidCallback? onDragStarted;
-  final VoidCallback? onDragEnd;
+  final double? elevation;
+  final VoidCallback? onTap;
 
-  @override
-  State<CardWidget> createState() => _CardWidgetState();
-}
-
-class _CardWidgetState extends State<CardWidget> {
   @override
   Widget build(BuildContext context) {
-    final cardWidget = GestureDetector(
-      onTap: () {
+    return GestureDetector(
+      onTap: onTap ?? () {
         const toBeForms = {'bin', 'bist', 'ist', 'sind', 'seid'};
-        if (toBeForms.contains(widget.text)) {
+        if (toBeForms.contains(text)) {
           showDialog(
             context: context,
             builder: (context) => const ConjugationWidget(),
@@ -35,58 +28,84 @@ class _CardWidgetState extends State<CardWidget> {
         }
       },
       child: Card(
-        elevation: widget.isUsed ? 1.0 : 4.0,
-        color: widget.isUsed ? Colors.grey[300] : null,
+        elevation: elevation ?? (isUsed ? 1.0 : 4.0),
+        color: isUsed ? Colors.grey[300] : null,
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(12.0),
           child: Text(
-            widget.text,
+            text,
             style: TextStyle(
-              color: widget.isUsed ? Colors.grey[600] : null,
+              color: isUsed ? Colors.grey[600] : null,
+              fontSize: 16,
+              fontWeight: FontWeight.w500,
             ),
           ),
         ),
       ),
     );
+  }
+}
 
-    if (!widget.isDraggable || widget.isUsed) {
-      return cardWidget;
+class DraggableCardWidget extends StatefulWidget {
+  const DraggableCardWidget({
+    super.key,
+    required this.cardId,
+    required this.text,
+    this.isUsed = false,
+    this.onDragStarted,
+    this.onDragEnd,
+  });
+
+  final String cardId;
+  final String text;
+  final bool isUsed;
+  final VoidCallback? onDragStarted;
+  final VoidCallback? onDragEnd;
+
+  @override
+  State<DraggableCardWidget> createState() => _DraggableCardWidgetState();
+}
+
+class _DraggableCardWidgetState extends State<DraggableCardWidget> {
+  @override
+  Widget build(BuildContext context) {
+    if (widget.isUsed) {
+      return CardWidget(
+        text: widget.text,
+        isUsed: true,
+      );
     }
 
-    return Draggable<String>(
-      data: widget.text,
+    return Draggable<Map<String, String>>(
+      data: {'id': widget.cardId, 'text': widget.text},
       onDragStarted: widget.onDragStarted,
       onDragEnd: (_) => widget.onDragEnd?.call(),
       feedback: Material(
-        elevation: 6.0,
+        elevation: 8.0,
+        borderRadius: BorderRadius.circular(8),
         child: Container(
+          padding: const EdgeInsets.all(12.0),
           decoration: BoxDecoration(
             color: Colors.blue[50],
             borderRadius: BorderRadius.circular(8),
             border: Border.all(color: Colors.blue, width: 2),
           ),
-          padding: const EdgeInsets.all(8.0),
           child: Text(
             widget.text,
             style: const TextStyle(
               fontWeight: FontWeight.bold,
               color: Colors.blue,
+              fontSize: 16,
             ),
           ),
         ),
       ),
-      childWhenDragging: Card(
+      childWhenDragging: CardWidget(
+        text: widget.text,
         elevation: 1.0,
-        color: Colors.grey[200],
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Text(
-            widget.text,
-            style: TextStyle(color: Colors.grey[500]),
-          ),
-        ),
+        onTap: () {}, // Disable tap when dragging
       ),
-      child: cardWidget,
+      child: CardWidget(text: widget.text),
     );
   }
 }

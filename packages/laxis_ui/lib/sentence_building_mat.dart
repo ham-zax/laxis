@@ -11,9 +11,9 @@ class SentenceBuildingMat extends StatefulWidget {
   });
 
   final VoidCallback? onCorrect;
-  final List<String> solution;
-  final Function(String)? onCardUsed;
-  final Function(String)? onCardRemoved;
+  final List<String> solution; // List of card IDs in correct order
+  final Function(String cardId)? onCardUsed;
+  final Function(String cardId)? onCardRemoved;
 
   @override
   State<SentenceBuildingMat> createState() => _SentenceBuildingMatState();
@@ -21,7 +21,7 @@ class SentenceBuildingMat extends StatefulWidget {
 
 class _SentenceBuildingMatState extends State<SentenceBuildingMat>
     with TickerProviderStateMixin {
-  final List<String> _cards = [];
+  final List<Map<String, String>> _placedCards = []; // {id, text}
   bool? _isCorrect;
   bool _isDragOver = false;
   late AnimationController _shakeController;
@@ -50,46 +50,56 @@ class _SentenceBuildingMatState extends State<SentenceBuildingMat>
   }
 
   void _checkAnswer() {
-    bool isCorrect = true;
-    if (_cards.length != widget.solution.length) {
-      isCorrect = false;
-    } else {
-      for (int i = 0; i < _cards.length; i++) {
-        if (_cards[i] != widget.solution[i]) {
-          isCorrect = false;
-          break;
-        }
+    if (_placedCards.length != widget.solution.length) {
+      _setIncorrect();
+      return;
+    }
+
+    // Check if placed cards match solution order by ID
+    for (int i = 0; i < _placedCards.length; i++) {
+      if (_placedCards[i]['id'] != widget.solution[i]) {
+        _setIncorrect();
+        return;
       }
     }
-    
+
+    // All cards are correct
     setState(() {
-      _isCorrect = isCorrect;
+      _isCorrect = true;
     });
     
-    if (isCorrect) {
+    // Delay to show success state, then trigger callback
+    Future.delayed(const Duration(milliseconds: 500), () {
       widget.onCorrect?.call();
-    } else {
-      _shakeController.forward().then((_) => _shakeController.reverse());
-    }
+    });
+  }
+
+  void _setIncorrect() {
+    setState(() {
+      _isCorrect = false;
+    });
+    _shakeController.forward().then((_) => _shakeController.reverse());
   }
 
   void _removeCard(int index) {
-    final removedCard = _cards[index];
-    setState(() {
-      _cards.removeAt(index);
-      _isCorrect = null;
-    });
-    widget.onCardRemoved?.call(removedCard);
+    if (index >= 0 && index < _placedCards.length) {
+      final removedCard = _placedCards[index];
+      setState(() {
+        _placedCards.removeAt(index);
+        _isCorrect = null;
+      });
+      widget.onCardRemoved?.call(removedCard['id']!);
+    }
   }
 
   void _clearAll() {
-    final removedCards = List<String>.from(_cards);
+    final removedCards = List<Map<String, String>>.from(_placedCards);
     setState(() {
-      _cards.clear();
+      _placedCards.clear();
       _isCorrect = null;
     });
     for (final card in removedCards) {
-      widget.onCardRemoved?.call(card);
+      widget.onCardRemoved?.call(card['id']!);
     }
   }
 
@@ -103,19 +113,19 @@ class _SentenceBuildingMatState extends State<SentenceBuildingMat>
           builder: (context, child) {
             return Transform.translate(
               offset: Offset(_shakeAnimation.value, 0),
-              child: DragTarget<String>(
+              child: DragTarget<Map<String, String>>(
                 onWillAccept: (data) {
                   setState(() => _isDragOver = true);
-                  return data != null && !_cards.contains(data);
+                  return data != null && data['id'] != null && data['text'] != null;
                 },
                 onLeave: (_) => setState(() => _isDragOver = false),
                 onAccept: (data) {
                   setState(() {
-                    _cards.add(data);
+                    _placedCards.add(data);
                     _isCorrect = null;
                     _isDragOver = false;
                   });
-                  widget.onCardUsed?.call(data);
+                  widget.onCardUsed?.call(data['id']!);
                 },
                 builder: (context, candidateData, rejectedData) {
                   return AnimatedContainer(
@@ -134,7 +144,7 @@ class _SentenceBuildingMatState extends State<SentenceBuildingMat>
                       ),
                       borderRadius: BorderRadius.circular(12),
                     ),
-                    child: _cards.isEmpty
+                    child: _placedCards.isEmpty
                         ? Center(
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -171,16 +181,17 @@ class _SentenceBuildingMatState extends State<SentenceBuildingMat>
                             onReorder: (oldIndex, newIndex) {
                               setState(() {
                                 if (newIndex > oldIndex) newIndex -= 1;
-                                final item = _cards.removeAt(oldIndex);
-                                _cards.insert(newIndex, item);
+                                final item = _placedCards.removeAt(oldIndex);
+                                _placedCards.insert(newIndex, item);
                                 _isCorrect = null;
                               });
                             },
-                            itemCount: _cards.length,
+                            itemCount: _placedCards.length,
                             itemBuilder: (context, index) {
-                              final text = _cards[index];
+                              final card = _placedCards[index];
+                              final text = card['text']!;
                               return Container(
-                                key: ValueKey('mat_${text}_$index'),
+                                key: ValueKey('mat_${card['id']}_$index'),
                                 margin: const EdgeInsets.symmetric(horizontal: 6),
                                 padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                                 decoration: BoxDecoration(
@@ -239,13 +250,13 @@ class _SentenceBuildingMatState extends State<SentenceBuildingMat>
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            if (_cards.isNotEmpty)
+            if (_placedCards.isNotEmpty)
               TextButton(
                 onPressed: _clearAll,
                 child: const Text('Clear All'),
               ),
             ElevatedButton(
-              onPressed: _cards.isNotEmpty ? _checkAnswer : null,
+              onPressed: _placedCards.isNotEmpty ? _checkAnswer : null,
               child: const Text('Submit'),
             ),
             if (_isCorrect != null)
