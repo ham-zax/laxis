@@ -188,45 +188,49 @@ class _SentenceBuildingMatState extends State<SentenceBuildingMat>
                         : Container(
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 12, vertical: 8),
-                            child: SingleChildScrollView(
-                              scrollDirection: Axis.horizontal,
-                              child: Row(
-                                children:
-                                    _placedCards.asMap().entries.map((entry) {
-                                  final index = entry.key;
-                                  final card = entry.value;
-                                  final text = card['text']!;
+                            child: Center(
+                              child: SingleChildScrollView(
+                                scrollDirection: Axis.horizontal,
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children:
+                                      _placedCards.asMap().entries.map((entry) {
+                                    final index = entry.key;
+                                    final card = entry.value;
+                                    final text = card['text']!;
 
-                                  return Container(
-                                    margin: const EdgeInsets.only(right: 8),
-                                    child: MouseRegion(
-                                      cursor: SystemMouseCursors.click,
-                                      child: GestureDetector(
-                                        onTap: () => _removeCard(index),
-                                        child: Container(
-                                          padding: const EdgeInsets.symmetric(
-                                              horizontal: 16, vertical: 10),
-                                          decoration: BoxDecoration(
-                                            color: Colors.blue[50],
-                                            border: Border.all(
-                                                color: Colors.blue[300]!,
-                                                width: 1),
-                                            borderRadius:
-                                                BorderRadius.circular(20),
-                                          ),
-                                          child: Text(
-                                            text,
-                                            style: TextStyle(
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.w500,
-                                              color: Colors.blue[800],
+                                    return Container(
+                                      margin: const EdgeInsets.only(right: 8),
+                                      child: MouseRegion(
+                                        cursor: SystemMouseCursors.click,
+                                        child: GestureDetector(
+                                          onTap: () => _removeCard(index),
+                                          child: Container(
+                                            padding: const EdgeInsets.symmetric(
+                                                horizontal: 16, vertical: 10),
+                                            decoration: BoxDecoration(
+                                              color: Colors.blue[50],
+                                              border: Border.all(
+                                                  color: Colors.blue[300]!,
+                                                  width: 1),
+                                              borderRadius:
+                                                  BorderRadius.circular(20),
+                                            ),
+                                            child: Text(
+                                              text,
+                                              style: TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w500,
+                                                color: Colors.blue[800],
+                                              ),
                                             ),
                                           ),
                                         ),
                                       ),
-                                    ),
-                                  );
-                                }).toList(),
+                                    );
+                                  }).toList(),
+                                ),
                               ),
                             ),
                           ),

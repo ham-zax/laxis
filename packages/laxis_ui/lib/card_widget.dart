@@ -20,17 +20,19 @@ class CardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MouseRegion(
-      cursor: hasConjugation ? SystemMouseCursors.click : SystemMouseCursors.basic,
+      cursor:
+          hasConjugation ? SystemMouseCursors.click : SystemMouseCursors.basic,
       child: GestureDetector(
-        onTap: onTap ?? () {
-          // Only show conjugation if explicitly marked by language module
-          if (hasConjugation) {
-            showDialog(
-              context: context,
-              builder: (context) => const ConjugationWidget(),
-            );
-          }
-        },
+        onTap: onTap ??
+            () {
+              // Only show conjugation if explicitly marked by language module
+              if (hasConjugation) {
+                showDialog(
+                  context: context,
+                  builder: (context) => const ConjugationWidget(),
+                );
+              }
+            },
         child: Card(
           elevation: elevation ?? (isUsed ? 1.0 : 4.0),
           color: isUsed ? Colors.grey[300] : null,
@@ -100,7 +102,8 @@ class _DraggableCardWidgetState extends State<DraggableCardWidget> {
     }
 
     return MouseRegion(
-      cursor: _isDragging ? SystemMouseCursors.grabbing : SystemMouseCursors.grab,
+      cursor:
+          _isDragging ? SystemMouseCursors.grabbing : SystemMouseCursors.grab,
       child: Draggable<Map<String, String>>(
         data: {'id': widget.cardId, 'text': widget.text},
         onDragStarted: () {
