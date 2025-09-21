@@ -1,9 +1,14 @@
 name: laxis_engine
 description: Core gameplay logic (Dart only).
 
+environment:
+  sdk: ^3.6.0
+
 dependencies:
   language_module_interface:
     path: ../language_module_interface
+  core:
+    path: ../core
 
 dev_dependencies:
   lints: ^5.1.1

@@ -1,0 +1,307 @@
+{
+  "id": "german_a1",
+  "name": "German A1: Foundations",
+  "description": "Complete beginner German course covering essential vocabulary, grammar, and communication skills",
+  "level": "A1",
+  "totalQuests": 15,
+  "estimatedHours": 40,
+  "quests": [
+    {
+      "id": "q1",
+      "title": "Self Introduction",
+      "prompt": "Translate: 'I am a student'",
+      "solution": ["c1", "c2", "c3", "c4"],
+      "conceptIds": ["con1"],
+      "difficulty": "beginner",
+      "points": 10
+    },
+    {
+      "id": "q2", 
+      "title": "Being and Identity",
+      "prompt": "Complete: 'Du ___ ein Lehrer' (You are a teacher)",
+      "solution": ["c5"],
+      "conceptIds": ["con1"],
+      "difficulty": "beginner",
+      "points": 10
+    },
+    {
+      "id": "q3",
+      "title": "Possession",
+      "prompt": "Translate: 'I have a book'",
+      "solution": ["c1", "c6", "c7", "c8"],
+      "conceptIds": ["con2"],
+      "difficulty": "beginner", 
+      "points": 15
+    },
+    {
+      "id": "q4",
+      "title": "Family Members",
+      "prompt": "How do you say 'My mother' in German?",
+      "solution": ["c9", "c10"],
+      "conceptIds": ["con3", "con4"],
+      "difficulty": "beginner",
+      "points": 10
+    },
+    {
+      "id": "q5",
+      "title": "Basic Numbers",
+      "prompt": "What comes after 'zwei'?",
+      "solution": ["c11"],
+      "conceptIds": ["con5"],
+      "difficulty": "beginner",
+      "points": 10
+    },
+    {
+      "id": "q6",
+      "title": "Daily Greetings",
+      "prompt": "How do you say 'Good morning' in German?",
+      "solution": ["c12", "c13"],
+      "conceptIds": ["con6"],
+      "difficulty": "beginner",
+      "points": 10
+    },
+    {
+      "id": "q7",
+      "title": "German Articles",
+      "prompt": "What is the correct article for 'Frau' (woman)?",
+      "solution": ["c14"],
+      "conceptIds": ["con7"],
+      "difficulty": "intermediate",
+      "points": 15
+    },
+    {
+      "id": "q8",
+      "title": "Colors",
+      "prompt": "How do you say 'The car is red'?",
+      "solution": ["c15", "c16", "c17", "c18"],
+      "conceptIds": ["con8", "con7"],
+      "difficulty": "intermediate",
+      "points": 15
+    },
+    {
+      "id": "q9",
+      "title": "Food Items",
+      "prompt": "Translate: 'I eat bread'",
+      "solution": ["c1", "c19", "c20"],
+      "conceptIds": ["con9", "con1"],
+      "difficulty": "intermediate",
+      "points": 15
+    },
+    {
+      "id": "q10",
+      "title": "Abilities",
+      "prompt": "How do you say 'I can speak German'?",
+      "solution": ["c1", "c21", "c22", "c23"],
+      "conceptIds": ["con10", "con1"],
+      "difficulty": "intermediate",
+      "points": 20
+    },
+    {
+      "id": "q11",
+      "title": "Asking Questions",
+      "prompt": "How do you ask 'What is your name?'",
+      "solution": ["c24", "c25", "c26", "c27"],
+      "conceptIds": ["con11"],
+      "difficulty": "intermediate",
+      "points": 20
+    },
+    {
+      "id": "q12",
+      "title": "Time",
+      "prompt": "How do you say 'It is 3 o'clock'?",
+      "solution": ["c28", "c29", "c11", "c30"],
+      "conceptIds": ["con12", "con5"],
+      "difficulty": "intermediate", 
+      "points": 20
+    },
+    {
+      "id": "q13",
+      "title": "Negation",
+      "prompt": "How do you say 'I do not understand'?",
+      "solution": ["c1", "c31", "c32"],
+      "conceptIds": ["con13", "con1"],
+      "difficulty": "advanced",
+      "points": 25
+    },
+    {
+      "id": "q14",
+      "title": "Days of Week",
+      "prompt": "What day comes after 'Montag'?",
+      "solution": ["c33"],
+      "conceptIds": ["con14"],
+      "difficulty": "intermediate",
+      "points": 15
+    },
+    {
+      "id": "q15",
+      "title": "Complete Sentence",
+      "prompt": "Build a sentence: 'The teacher is nice'",
+      "solution": ["c34", "c35", "c17", "c36"],
+      "conceptIds": ["con7", "con1", "con15"],
+      "difficulty": "advanced",
+      "points": 30
+    }
+  ],
+  "concepts": [
+    {
+      "id": "con1",
+      "name": "Present Tense - Sein & Basic Verbs",
+      "category": "Grammar",
+      "explanation": "The present tense in German is used to talk about current states, habitual actions, and future plans. 'Sein' (to be) is irregular: ich bin, du bist, er/sie/es ist.",
+      "examples": ["Ich bin Student.", "Du bist Lehrerin.", "Er ist alt."],
+      "difficulty": "beginner"
+    },
+    {
+      "id": "con2", 
+      "name": "Present Tense - Haben",
+      "category": "Grammar",
+      "explanation": "The verb 'haben' (to have) is essential for expressing possession. Conjugation: ich habe, du hast, er/sie/es hat.",
+      "examples": ["Ich habe ein Auto.", "Du hast einen Hund.", "Sie hat Zeit."],
+      "difficulty": "beginner"
+    },
+    {
+      "id": "con3",
+      "name": "Family Vocabulary",
+      "category": "Vocabulary",
+      "explanation": "Essential family member terms including immediate and extended family. All family nouns have specific genders that must be memorized.",
+      "examples": ["die Mutter (mother)", "der Vater (father)", "die Schwester (sister)"],
+      "difficulty": "beginner"
+    },
+    {
+      "id": "con4",
+      "name": "Possessive Pronouns",
+      "category": "Grammar", 
+      "explanation": "Possessive pronouns in German change based on the gender of the noun they modify: mein/meine/mein, dein/deine/dein.",
+      "examples": ["mein Vater", "meine Mutter", "mein Kind"],
+      "difficulty": "intermediate"
+    },
+    {
+      "id": "con5",
+      "name": "Numbers 1-20",
+      "category": "Vocabulary",
+      "explanation": "Cardinal numbers from 1-20 are fundamental for daily communication, telling time, ages, and quantities.",
+      "examples": ["eins, zwei, drei", "zehn, elf, zwölf", "zwanzig"],
+      "difficulty": "beginner"
+    },
+    {
+      "id": "con6",
+      "name": "Greetings & Polite Expressions",
+      "category": "Communication",
+      "explanation": "Essential phrases for daily social interactions, including time-specific greetings and polite expressions.",
+      "examples": ["Guten Morgen", "Wie geht es Ihnen?", "Danke schön"],
+      "difficulty": "beginner"
+    },
+    {
+      "id": "con7",
+      "name": "German Articles (der, die, das)",
+      "category": "Grammar",
+      "explanation": "German nouns have three genders: masculine (der), feminine (die), neuter (das). Articles must be memorized with each noun.",
+      "examples": ["der Mann", "die Frau", "das Kind"],
+      "difficulty": "intermediate"
+    },
+    {
+      "id": "con8",
+      "name": "Colors & Adjectives",
+      "category": "Vocabulary",
+      "explanation": "Basic color vocabulary and how adjectives work in German sentences. Adjectives can come before or after the noun.",
+      "examples": ["rot, blau, grün", "Das Auto ist rot.", "ein rotes Auto"],
+      "difficulty": "intermediate"
+    },
+    {
+      "id": "con9",
+      "name": "Food & Drink Vocabulary",
+      "category": "Vocabulary", 
+      "explanation": "Essential food and drink terms for shopping, ordering in restaurants, and daily conversations about meals.",
+      "examples": ["das Brot", "das Wasser", "der Kaffee"],
+      "difficulty": "beginner"
+    },
+    {
+      "id": "con10",
+      "name": "Modal Verbs - können",
+      "category": "Grammar",
+      "explanation": "Modal verb 'können' (can/to be able to) expresses ability or possibility. Conjugation: ich kann, du kannst, er/sie/es kann.",
+      "examples": ["Ich kann schwimmen.", "Kannst du Deutsch?", "Er kann kochen."],
+      "difficulty": "intermediate"
+    },
+    {
+      "id": "con11",
+      "name": "Question Formation",
+      "category": "Grammar",
+      "explanation": "Forming questions in German by inverting subject and verb, or using question words (W-Fragen).",
+      "examples": ["Wie heißt du?", "Wo wohnst du?", "Bist du Student?"],
+      "difficulty": "intermediate"
+    },
+    {
+      "id": "con12",
+      "name": "Time Expressions",
+      "category": "Communication",
+      "explanation": "Telling time and expressing time-related concepts. German uses both 12-hour and 24-hour formats.",
+      "examples": ["Es ist drei Uhr.", "um acht Uhr", "am Morgen"],
+      "difficulty": "intermediate"
+    },
+    {
+      "id": "con13",
+      "name": "Negation with 'nicht'",
+      "category": "Grammar",
+      "explanation": "Using 'nicht' to negate verbs and adjectives in German sentences. Position of 'nicht' varies depending on sentence structure.",
+      "examples": ["Ich verstehe nicht.", "Das ist nicht gut.", "Er kommt nicht."],
+      "difficulty": "advanced"
+    },
+    {
+      "id": "con14",
+      "name": "Days of the Week",
+      "category": "Vocabulary",
+      "explanation": "The seven days of the week in German, used for scheduling and talking about routines.",
+      "examples": ["Montag, Dienstag, Mittwoch", "am Montag", "jeden Tag"],
+      "difficulty": "beginner"
+    },
+    {
+      "id": "con15",
+      "name": "Adjective Usage",
+      "category": "Grammar",
+      "explanation": "How to use adjectives to describe nouns. Adjectives can be predicative (after 'sein') or attributive (before nouns).",
+      "examples": ["Der Lehrer ist nett.", "ein netter Lehrer", "Die nette Lehrerin"],
+      "difficulty": "advanced"
+    }
+  ],
+  "cards": [
+    {"id": "c1", "text": "Ich", "translation": "I", "conceptId": "con1", "type": "pronoun"},
+    {"id": "c2", "text": "bin", "translation": "am", "conceptId": "con1", "type": "verb"},
+    {"id": "c3", "text": "ein", "translation": "a/an (masculine/neuter)", "conceptId": "con7", "type": "article"},
+    {"id": "c4", "text": "Student", "translation": "student (male)", "conceptId": "con1", "type": "noun"},
+    {"id": "c5", "text": "bist", "translation": "are", "conceptId": "con1", "type": "verb"},
+    {"id": "c6", "text": "habe", "translation": "have", "conceptId": "con2", "type": "verb"},
+    {"id": "c7", "text": "ein", "translation": "a/an", "conceptId": "con7", "type": "article"},
+    {"id": "c8", "text": "Buch", "translation": "book", "conceptId": "con2", "type": "noun"},
+    {"id": "c9", "text": "meine", "translation": "my (feminine)", "conceptId": "con4", "type": "possessive"},
+    {"id": "c10", "text": "Mutter", "translation": "mother", "conceptId": "con3", "type": "noun"},
+    {"id": "c11", "text": "drei", "translation": "three", "conceptId": "con5", "type": "number"},
+    {"id": "c12", "text": "Guten", "translation": "Good", "conceptId": "con6", "type": "adjective"},
+    {"id": "c13", "text": "Morgen", "translation": "morning", "conceptId": "con6", "type": "noun"},
+    {"id": "c14", "text": "die", "translation": "the (feminine)", "conceptId": "con7", "type": "article"},
+    {"id": "c15", "text": "Das", "translation": "The (neuter)", "conceptId": "con7", "type": "article"},
+    {"id": "c16", "text": "Auto", "translation": "car", "conceptId": "con8", "type": "noun"},
+    {"id": "c17", "text": "ist", "translation": "is", "conceptId": "con1", "type": "verb"},
+    {"id": "c18", "text": "rot", "translation": "red", "conceptId": "con8", "type": "adjective"},
+    {"id": "c19", "text": "esse", "translation": "eat", "conceptId": "con9", "type": "verb"},
+    {"id": "c20", "text": "Brot", "translation": "bread", "conceptId": "con9", "type": "noun"},
+    {"id": "c21", "text": "kann", "translation": "can", "conceptId": "con10", "type": "modal_verb"},
+    {"id": "c22", "text": "sprechen", "translation": "speak", "conceptId": "con10", "type": "verb"},
+    {"id": "c23", "text": "Deutsch", "translation": "German", "conceptId": "con10", "type": "language"},
+    {"id": "c24", "text": "Wie", "translation": "How", "conceptId": "con11", "type": "question_word"},
+    {"id": "c25", "text": "heißt", "translation": "is called", "conceptId": "con11", "type": "verb"},
+    {"id": "c26", "text": "du", "translation": "you", "conceptId": "con11", "type": "pronoun"},
+    {"id": "c27", "text": "?", "translation": "?", "conceptId": "con11", "type": "punctuation"},
+    {"id": "c28", "text": "Es", "translation": "It", "conceptId": "con12", "type": "pronoun"},
+    {"id": "c29", "text": "ist", "translation": "is", "conceptId": "con12", "type": "verb"},
+    {"id": "c30", "text": "Uhr", "translation": "o'clock", "conceptId": "con12", "type": "noun"},
+    {"id": "c31", "text": "verstehe", "translation": "understand", "conceptId": "con13", "type": "verb"},
+    {"id": "c32", "text": "nicht", "translation": "not", "conceptId": "con13", "type": "negation"},
+    {"id": "c33", "text": "Dienstag", "translation": "Tuesday", "conceptId": "con14", "type": "noun"},
+    {"id": "c34", "text": "Der", "translation": "The (masculine)", "conceptId": "con7", "type": "article"},
+    {"id": "c35", "text": "Lehrer", "translation": "teacher (male)", "conceptId": "con15", "type": "noun"},
+    {"id": "c36", "text": "nett", "translation": "nice", "conceptId": "con15", "type": "adjective"}
+  ],
+  "nextLevel": "german_a2",
+  "estimatedCompletionTime": "6-8 weeks with daily practice"
+}

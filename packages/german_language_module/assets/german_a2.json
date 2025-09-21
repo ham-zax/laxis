@@ -1,0 +1,426 @@
+{
+  "id": "german_a2",
+  "name": "German A2: Intermediate Foundations",
+  "description": "Intermediate German course building on A1 fundamentals with complex grammar, expanded vocabulary, and practical communication skills",
+  "level": "A2",
+  "totalQuests": 20,
+  "estimatedHours": 60,
+  "prerequisite": "german_a1",
+  "quests": [
+    {
+      "id": "q1",
+      "title": "Past Actions",
+      "prompt": "Translate: 'I have worked yesterday' (Ich habe gestern gearbeitet)",
+      "solution": ["c1", "c2", "c3", "c4"],
+      "conceptIds": ["con1"],
+      "difficulty": "beginner",
+      "points": 15
+    },
+    {
+      "id": "q2", 
+      "title": "Direct Objects",
+      "prompt": "Translate: 'I have a dog'",
+      "solution": ["c1", "c2", "c5", "c6"],
+      "conceptIds": ["con2"],
+      "difficulty": "beginner",
+      "points": 15
+    },
+    {
+      "id": "q3",
+      "title": "Indirect Objects",
+      "prompt": "How do you say 'I give the man a book'?",
+      "solution": ["c1", "c7", "c8", "c9", "c10", "c11"],
+      "conceptIds": ["con3"],
+      "difficulty": "intermediate",
+      "points": 20
+    },
+    {
+      "id": "q4",
+      "title": "Giving Reasons",
+      "prompt": "Complete: 'Ich lerne Deutsch, ___ es interessant ist' (I learn German because it is interesting)",
+      "solution": ["c12"],
+      "conceptIds": ["con4"],
+      "difficulty": "intermediate",
+      "points": 20
+    },
+    {
+      "id": "q5",
+      "title": "Past Abilities",
+      "prompt": "How do you say 'I could speak German'?",
+      "solution": ["c1", "c13", "c14", "c15"],
+      "conceptIds": ["con5", "con1"],
+      "difficulty": "intermediate",
+      "points": 20
+    },
+    {
+      "id": "q6",
+      "title": "Comparisons",
+      "prompt": "How do you say 'bigger than'?",
+      "solution": ["c16", "c17"],
+      "conceptIds": ["con6"],
+      "difficulty": "intermediate",
+      "points": 18
+    },
+    {
+      "id": "q7",
+      "title": "The Best",
+      "prompt": "How do you say 'the biggest'?",
+      "solution": ["c18", "c19"],
+      "conceptIds": ["con6"],
+      "difficulty": "intermediate",
+      "points": 18
+    },
+    {
+      "id": "q8",
+      "title": "Daily Routines",
+      "prompt": "How do you say 'I wash myself'?",
+      "solution": ["c1", "c20", "c21"],
+      "conceptIds": ["con7"],
+      "difficulty": "intermediate",
+      "points": 22
+    },
+    {
+      "id": "q9",
+      "title": "Stating Facts",
+      "prompt": "Complete: 'Ich denke, ___ Deutsch schwer ist' (I think that German is difficult)",
+      "solution": ["c22"],
+      "conceptIds": ["con8"],
+      "difficulty": "intermediate",
+      "points": 20
+    },
+    {
+      "id": "q10",
+      "title": "Location & Direction",
+      "prompt": "How do you say 'with my friend'?",
+      "solution": ["c23", "c24", "c25"],
+      "conceptIds": ["con9"],
+      "difficulty": "intermediate",
+      "points": 18
+    },
+    {
+      "id": "q11",
+      "title": "Future Plans",
+      "prompt": "How do you say 'I will travel'?",
+      "solution": ["c1", "c26", "c27"],
+      "conceptIds": ["con10"],
+      "difficulty": "intermediate",
+      "points": 22
+    },
+    {
+      "id": "q12",
+      "title": "Describing Objects",
+      "prompt": "How do you say 'I have a big car' (Ich habe ein großes Auto)?",
+      "solution": ["c1", "c2", "c10", "c28", "c29"],
+      "conceptIds": ["con11", "con2"],
+      "difficulty": "advanced",
+      "points": 25
+    },
+    {
+      "id": "q13",
+      "title": "Daily Activities",
+      "prompt": "How do you say 'I get up early'?",
+      "solution": ["c1", "c30", "c31", "c32"],
+      "conceptIds": ["con12"],
+      "difficulty": "intermediate",
+      "points": 20
+    },
+    {
+      "id": "q14",
+      "title": "Conditional Situations",
+      "prompt": "Complete: '___ es regnet, bleibe ich zu Hause' (When it rains, I stay at home)",
+      "solution": ["c33"],
+      "conceptIds": ["con13"],
+      "difficulty": "advanced",
+      "points": 25
+    },
+    {
+      "id": "q15",
+      "title": "Position vs Movement",
+      "prompt": "How do you say 'I go into the house'?",
+      "solution": ["c1", "c34", "c35", "c36", "c37"],
+      "conceptIds": ["con14"],
+      "difficulty": "advanced",
+      "points": 25
+    },
+    {
+      "id": "q16",
+      "title": "Polite Inquiries",
+      "prompt": "How do you ask 'Can you tell me where the station is?'",
+      "solution": ["c38", "c39", "c40", "c41", "c42", "c43", "c44", "c45"],
+      "conceptIds": ["con15"],
+      "difficulty": "advanced",
+      "points": 30
+    },
+    {
+      "id": "q17",
+      "title": "Earlier Past Events",
+      "prompt": "How do you say 'I had already eaten'?",
+      "solution": ["c1", "c46", "c47", "c48"],
+      "conceptIds": ["con16"],
+      "difficulty": "advanced",
+      "points": 28
+    },
+    {
+      "id": "q18",
+      "title": "Connecting Ideas",
+      "prompt": "Complete: 'Es regnet. ___ gehe ich spazieren' (It's raining. Nevertheless, I'm going for a walk)",
+      "solution": ["c49"],
+      "conceptIds": ["con17"],
+      "difficulty": "advanced",
+      "points": 26
+    },
+    {
+      "id": "q19",
+      "title": "Things Being Done",
+      "prompt": "How do you say 'The house is being built'?",
+      "solution": ["c36", "c37", "c50", "c51"],
+      "conceptIds": ["con18"],
+      "difficulty": "advanced",
+      "points": 30
+    },
+    {
+      "id": "q20",
+      "title": "Complex Communication",
+      "prompt": "Build: 'I believe that I will learn German better if I practice more'",
+      "solution": ["c1", "c52", "c22", "c1", "c26", "c14", "c53", "c54", "c33", "c1", "c55", "c56"],
+      "conceptIds": ["con8", "con10", "con13", "con6"],
+      "difficulty": "expert",  
+      "points": 35
+    }
+  ],
+  "concepts": [
+    {
+      "id": "con1",
+      "name": "Past Tense - Perfekt",
+      "category": "Grammar",
+      "explanation": "The Perfekt tense is used to talk about completed actions in the past. It's formed with auxiliary verbs haben/sein + past participle (Partizip II). Most verbs use 'haben', but verbs of movement and state change use 'sein'.",
+      "examples": ["Ich habe gearbeitet (I worked/have worked)", "Er ist nach Berlin gefahren (He went to Berlin)", "Wir haben Deutsch gelernt (We learned German)"],
+      "difficulty": "beginner"
+    },
+    {
+      "id": "con2", 
+      "name": "Accusative Case",
+      "category": "Grammar",
+      "explanation": "The accusative case marks the direct object of a sentence - who or what receives the action directly. Articles change: der→den, die→die, das→das, ein→einen, eine→eine, ein→ein.",
+      "examples": ["Ich sehe den Mann (I see the man)", "Er kauft einen Hund (He buys a dog)", "Sie liest ein Buch (She reads a book)"],
+      "difficulty": "beginner"
+    },
+    {
+      "id": "con3",
+      "name": "Dative Case",
+      "category": "Grammar",
+      "explanation": "The dative case indicates the indirect object - to whom or for whom something is done. Articles: der→dem, die→der, das→dem, ein→einem, eine→einer, ein→einem.",
+      "examples": ["Ich gebe dem Mann ein Buch (I give the man a book)", "Sie hilft ihrer Mutter (She helps her mother)", "Er schreibt seinem Freund (He writes to his friend)"],
+      "difficulty": "intermediate"
+    },
+    {
+      "id": "con4",
+      "name": "Subordinate Clauses - weil/da",
+      "category": "Grammar", 
+      "explanation": "Subordinate clauses with 'weil' (because) or 'da' (since/because) explain reasons. The conjugated verb moves to the end of the subordinate clause.",
+      "examples": ["Ich lerne Deutsch, weil es interessant ist", "Da es regnet, bleibe ich zu Hause", "Er ist müde, weil er viel gearbeitet hat"],
+      "difficulty": "intermediate"
+    },
+    {
+      "id": "con5",
+      "name": "Modal Verbs in Past Tense",
+      "category": "Grammar",
+      "explanation": "Modal verbs in the past use Präteritum forms more commonly than Perfekt: konnte (could), musste (had to), wollte (wanted), durfte (was allowed), sollte (should have).",
+      "examples": ["Ich konnte Deutsch sprechen", "Er musste arbeiten", "Wir wollten ins Kino gehen"],
+      "difficulty": "intermediate"
+    },
+    {
+      "id": "con6",
+      "name": "Comparative & Superlative",
+      "category": "Grammar",
+      "explanation": "Comparative: adjective + -er (bigger = größer). Superlative: am + adjective + -sten (biggest = am größten) or der/die/das + adjective + -ste. Some adjectives get umlaut: alt→älter→am ältesten.",
+      "examples": ["Das Auto ist größer als das Fahrrad", "München ist am schönsten", "Sie ist die beste Studentin"],
+      "difficulty": "intermediate"
+    },
+    {
+      "id": "con7",
+      "name": "Reflexive Verbs",
+      "category": "Grammar",
+      "explanation": "Reflexive verbs use reflexive pronouns (sich, mich, dich, uns, euch) when the subject performs an action on themselves. Common reflexive verbs: sich waschen, sich freuen, sich interessieren.",
+      "examples": ["Ich wasche mich", "Du freust dich", "Wir interessieren uns für Sport"],
+      "difficulty": "intermediate"
+    },
+    {
+      "id": "con8",
+      "name": "Subordinate Clauses - dass",
+      "category": "Grammar",
+      "explanation": "The conjunction 'dass' (that) introduces subordinate clauses expressing opinions, thoughts, or reported speech. The verb goes to the end of the subordinate clause.",
+      "examples": ["Ich denke, dass Deutsch schwer ist", "Er sagt, dass er morgen kommt", "Sie weiß, dass wir hier sind"],
+      "difficulty": "intermediate"
+    },
+    {
+      "id": "con9",
+      "name": "Dative Prepositions",
+      "category": "Grammar", 
+      "explanation": "Some prepositions always take dative case: mit (with), nach (after/to), bei (at/with), von (from/of), zu (to), aus (from/out of), seit (since).",
+      "examples": ["mit meinem Freund", "nach der Schule", "bei der Arbeit", "von meiner Mutter"],
+      "difficulty": "intermediate"
+    },
+    {
+      "id": "con10",
+      "name": "Future Tense - werden",
+      "category": "Grammar",
+      "explanation": "Future tense is formed with werden + infinitive. Werden conjugates: ich werde, du wirst, er/sie/es wird, wir werden, ihr werdet, sie werden.",
+      "examples": ["Ich werde nach Deutschland reisen", "Du wirst Deutsch lernen", "Wir werden Freunde besuchen"],
+      "difficulty": "intermediate"
+    },
+    {
+      "id": "con11",
+      "name": "Adjective Declension",
+      "category": "Grammar",
+      "explanation": "Adjectives before nouns must have endings that agree with gender, case, and number. Endings depend on whether there's a definite article, indefinite article, or no article.",
+      "examples": ["ein großes Auto", "der rote Apfel", "kaltes Wasser"],
+      "difficulty": "advanced"
+    },
+    {
+      "id": "con12",
+      "name": "Separable Verbs",
+      "category": "Grammar",
+      "explanation": "Separable verbs split in present tense - the prefix goes to the end. In Perfekt, 'ge-' goes between prefix and stem: aufstehen → aufgestanden.",
+      "examples": ["Ich stehe früh auf", "Der Zug kommt um 8 Uhr an", "Wir kaufen im Supermarkt ein"],
+      "difficulty": "intermediate"
+    },
+    {
+      "id": "con13",
+      "name": "Subordinate Clauses - wenn",
+      "category": "Grammar",
+      "explanation": "The conjunction 'wenn' means 'when/if' and introduces conditional or temporal subordinate clauses. The verb goes to the end.",
+      "examples": ["Wenn es regnet, bleibe ich zu Hause", "Ich rufe an, wenn ich Zeit habe", "Wenn du kommst, können wir essen"],
+      "difficulty": "advanced"
+    },
+    {
+      "id": "con14",
+      "name": "Two-way Prepositions",
+      "category": "Grammar",
+      "explanation": "Some prepositions take accusative (movement) or dative (location): in, an, auf, über, unter, vor, hinter, neben, zwischen. 'Wohin?' = accusative, 'Wo?' = dative.",
+      "examples": ["Ich gehe in das Haus (accusative - movement)", "Ich bin in dem Haus (dative - location)"],
+      "difficulty": "advanced"
+    },
+    {
+      "id": "con15",
+      "name": "Indirect Questions",
+      "category": "Grammar",
+      "explanation": "Indirect questions are more polite and use subordinate clause word order. Question words: wo, wann, wie, warum become part of subordinate clauses.",
+      "examples": ["Können Sie mir sagen, wo der Bahnhof ist?", "Ich weiß nicht, wann der Zug kommt", "Weißt du, wie er heißt?"],
+      "difficulty": "advanced"
+    },
+    {
+      "id": "con16",
+      "name": "Past Perfect - Plusquamperfekt",
+      "category": "Grammar",
+      "explanation": "Past perfect expresses actions completed before another past action. Formed with hatte/war + past participle. Used in storytelling and formal writing.",
+      "examples": ["Ich hatte schon gegessen, als er kam", "Sie war schon gegangen, bevor wir ankamen"],
+      "difficulty": "advanced"
+    },
+    {
+      "id": "con17",
+      "name": "Conjunctive Adverbs",
+      "category": "Grammar",
+      "explanation": "Adverbial conjunctions connect sentences and show relationships: deshalb (therefore), trotzdem (nevertheless), außerdem (furthermore), jedoch (however).",
+      "examples": ["Es regnet. Deshalb bleibe ich zu Hause", "Er ist krank. Trotzdem arbeitet er", "Das Buch ist teuer. Außerdem ist es langweilig"],
+      "difficulty": "advanced"
+    },
+    {
+      "id": "con18",
+      "name": "Passive Voice - Introduction",
+      "category": "Grammar",
+      "explanation": "Passive voice emphasizes the action rather than who does it. Formed with werden + past participle. Present passive: Das Haus wird gebaut.",
+      "examples": ["Das Auto wird repariert", "Die Briefe werden geschrieben", "Deutsch wird hier gesprochen"],
+      "difficulty": "advanced"
+    },
+    {
+      "id": "con19",
+      "name": "Travel & Transportation",
+      "category": "Vocabulary",
+      "explanation": "Essential vocabulary for traveling, using public transport, and discussing vacations and trips.",
+      "examples": ["der Bahnhof", "das Flugzeug", "die Reise", "der Urlaub"],
+      "difficulty": "intermediate"
+    },
+    {
+      "id": "con20",
+      "name": "Work & Professions",
+      "category": "Vocabulary", 
+      "explanation": "Vocabulary related to jobs, workplace, and professional activities.",
+      "examples": ["der Beruf", "die Arbeit", "der Chef", "das Büro"],
+      "difficulty": "intermediate"
+    }
+  ],
+  "cards": [
+    {"id": "c1", "text": "Ich", "translation": "I", "conceptId": "con1", "type": "pronoun"},
+    {"id": "c2", "text": "habe", "translation": "have", "conceptId": "con1", "type": "auxiliary_verb"},
+    {"id": "c3", "text": "gestern", "translation": "yesterday", "conceptId": "con1", "type": "adverb"},
+    {"id": "c4", "text": "gearbeitet", "translation": "worked", "conceptId": "con1", "type": "past_participle"},
+    {"id": "c5", "text": "einen", "translation": "a/an (masculine accusative)", "conceptId": "con2", "type": "article"},
+    {"id": "c6", "text": "Hund", "translation": "dog", "conceptId": "con2", "type": "noun"},
+    {"id": "c7", "text": "gebe", "translation": "give", "conceptId": "con3", "type": "verb"},
+    {"id": "c8", "text": "dem", "translation": "the (masculine/neuter dative)", "conceptId": "con3", "type": "article"},
+    {"id": "c9", "text": "Mann", "translation": "man", "conceptId": "con3", "type": "noun"},
+    {"id": "c10", "text": "ein", "translation": "a/an", "conceptId": "con3", "type": "article"},
+    {"id": "c11", "text": "Buch", "translation": "book", "conceptId": "con3", "type": "noun"},
+    {"id": "c12", "text": "weil", "translation": "because", "conceptId": "con4", "type": "conjunction"},
+    {"id": "c13", "text": "konnte", "translation": "could", "conceptId": "con5", "type": "modal_verb"},
+    {"id": "c14", "text": "Deutsch", "translation": "German", "conceptId": "con5", "type": "language"},
+    {"id": "c15", "text": "sprechen", "translation": "speak", "conceptId": "con5", "type": "verb"},
+    {"id": "c16", "text": "größer", "translation": "bigger", "conceptId": "con6", "type": "adjective"},
+    {"id": "c17", "text": "als", "translation": "than", "conceptId": "con6", "type": "comparison"},
+    {"id": "c18", "text": "am", "translation": "at the (superlative marker)", "conceptId": "con6", "type": "superlative_marker"},
+    {"id": "c19", "text": "größten", "translation": "biggest", "conceptId": "con6", "type": "adjective"},
+    {"id": "c20", "text": "wasche", "translation": "wash", "conceptId": "con7", "type": "verb"},
+    {"id": "c21", "text": "mich", "translation": "myself", "conceptId": "con7", "type": "reflexive_pronoun"},
+    {"id": "c22", "text": "dass", "translation": "that", "conceptId": "con8", "type": "conjunction"},
+    {"id": "c23", "text": "mit", "translation": "with", "conceptId": "con9", "type": "preposition"},
+    {"id": "c24", "text": "meinem", "translation": "my (masculine/neuter dative)", "conceptId": "con9", "type": "possessive"},
+    {"id": "c25", "text": "Freund", "translation": "friend", "conceptId": "con9", "type": "noun"},
+    {"id": "c26", "text": "werde", "translation": "will", "conceptId": "con10", "type": "auxiliary_verb"},
+    {"id": "c27", "text": "reisen", "translation": "travel", "conceptId": "con10", "type": "verb"},
+    {"id": "c28", "text": "großes", "translation": "big (neuter accusative)", "conceptId": "con11", "type": "adjective"},
+    {"id": "c29", "text": "Auto", "translation": "car", "conceptId": "con11", "type": "noun"},
+    {"id": "c30", "text": "stehe", "translation": "stand", "conceptId": "con12", "type": "verb"},
+    {"id": "c31", "text": "früh", "translation": "early", "conceptId": "con12", "type": "adverb"},
+    {"id": "c32", "text": "auf", "translation": "up", "conceptId": "con12", "type": "particle"},
+    {"id": "c33", "text": "Wenn", "translation": "When/If", "conceptId": "con13", "type": "conjunction"},
+    {"id": "c34", "text": "gehe", "translation": "go", "conceptId": "con14", "type": "verb"},
+    {"id": "c35", "text": "in", "translation": "in/into", "conceptId": "con14", "type": "preposition"},
+    {"id": "c36", "text": "das", "translation": "the (neuter accusative)", "conceptId": "con14", "type": "article"},
+    {"id": "c37", "text": "Haus", "translation": "house", "conceptId": "con14", "type": "noun"},
+    {"id": "c38", "text": "Können", "translation": "Can", "conceptId": "con15", "type": "modal_verb"},
+    {"id": "c39", "text": "Sie", "translation": "you (formal)", "conceptId": "con15", "type": "pronoun"},
+    {"id": "c40", "text": "mir", "translation": "me (dative)", "conceptId": "con15", "type": "pronoun"},
+    {"id": "c41", "text": "sagen", "translation": "tell", "conceptId": "con15", "type": "verb"},
+    {"id": "c42", "text": "wo", "translation": "where", "conceptId": "con15", "type": "question_word"},
+    {"id": "c43", "text": "der", "translation": "the (masculine)", "conceptId": "con15", "type": "article"},
+    {"id": "c44", "text": "Bahnhof", "translation": "train station", "conceptId": "con15", "type": "noun"},
+    {"id": "c45", "text": "ist", "translation": "is", "conceptId": "con15", "type": "verb"},
+    {"id": "c46", "text": "hatte", "translation": "had", "conceptId": "con16", "type": "auxiliary_verb"},
+    {"id": "c47", "text": "schon", "translation": "already", "conceptId": "con16", "type": "adverb"},
+    {"id": "c48", "text": "gegessen", "translation": "eaten", "conceptId": "con16", "type": "past_participle"},
+    {"id": "c49", "text": "Trotzdem", "translation": "Nevertheless", "conceptId": "con17", "type": "adverb"},
+    {"id": "c50", "text": "wird", "translation": "is being", "conceptId": "con18", "type": "auxiliary_verb"},
+    {"id": "c51", "text": "gebaut", "translation": "built", "conceptId": "con18", "type": "past_participle"},
+    {"id": "c52", "text": "glaube", "translation": "believe", "conceptId": "con8", "type": "verb"},
+    {"id": "c53", "text": "besser", "translation": "better", "conceptId": "con6", "type": "adverb"},
+    {"id": "c54", "text": "lernen", "translation": "learn", "conceptId": "con10", "type": "verb"},
+    {"id": "c55", "text": "mehr", "translation": "more", "conceptId": "con6", "type": "adverb"},
+    {"id": "c56", "text": "übe", "translation": "practice", "conceptId": "con13", "type": "verb"}
+  ],
+  "skillAreas": [
+    {"name": "Grammar Fundamentals", "concepts": ["con1", "con2", "con3", "con5"], "color": "#FF6B6B"},
+    {"name": "Sentence Structure", "concepts": ["con4", "con8", "con13", "con15"], "color": "#4ECDC4"},
+    {"name": "Advanced Grammar", "concepts": ["con11", "con16", "con17", "con18"], "color": "#45B7D1"},
+    {"name": "Comparisons & Descriptions", "concepts": ["con6", "con7", "con11"], "color": "#96CEB4"},
+    {"name": "Time & Movement", "concepts": ["con10", "con12", "con14"], "color": "#FFEAA7"}
+  ],
+  "nextLevel": "german_b1",
+  "estimatedCompletionTime": "8-12 weeks with daily practice",
+  "difficultyProgression": {
+    "beginner": [1, 2],
+    "intermediate": [3, 4, 5, 6, 7, 8, 9, 10, 12, 13],
+    "advanced": [11, 14, 15, 16, 17, 18, 19],
+    "expert": [20]
+  }
+}
