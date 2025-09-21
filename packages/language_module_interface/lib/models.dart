@@ -29,12 +29,18 @@ class Quest {
   final String prompt;
   final List<String> solution;
   final List<String> conceptIds;
+  final String? title;
+  final String? difficulty;
+  final int? points;
 
   Quest({
     required this.id,
     required this.prompt,
     required this.solution,
     required this.conceptIds,
+    this.title,
+    this.difficulty,
+    this.points,
   });
 
   factory Quest.fromJson(Map<String, dynamic> json) {
@@ -43,6 +49,9 @@ class Quest {
       prompt: json['prompt'],
       solution: List<String>.from(json['solution']),
       conceptIds: List<String>.from(json['conceptIds']),
+      title: json['title'],
+      difficulty: json['difficulty'],
+      points: json['points'],
     );
   }
 }
@@ -51,11 +60,17 @@ class Concept {
   final String id;
   final String name;
   final String explanation;
+  final String? category;
+  final String? difficulty;
+  final List<String>? examples;
 
   Concept({
     required this.id,
     required this.name,
     required this.explanation,
+    this.category,
+    this.difficulty,
+    this.examples,
   });
 
   factory Concept.fromJson(Map<String, dynamic> json) {
@@ -63,6 +78,11 @@ class Concept {
       id: json['id'],
       name: json['name'],
       explanation: json['explanation'],
+      category: json['category'],
+      difficulty: json['difficulty'],
+      examples: json['examples'] != null
+          ? List<String>.from(json['examples'])
+          : null,
     );
   }
 }
@@ -71,11 +91,17 @@ class Card {
   final String id;
   final String text;
   final String conceptId;
+  final String? translation;
+  final String? type;
+  final bool hasConjugation;
 
   Card({
     required this.id,
     required this.text,
     required this.conceptId,
+    this.translation,
+    this.type,
+    this.hasConjugation = false,
   });
 
   factory Card.fromJson(Map<String, dynamic> json) {
@@ -83,6 +109,14 @@ class Card {
       id: json['id'],
       text: json['text'],
       conceptId: json['conceptId'],
+      translation: json['translation'],
+      type: json['type'],
+      hasConjugation: json['type'] == 'verb' &&
+                     (json['text']?.contains('bin') == true ||
+                      json['text']?.contains('bist') == true ||
+                      json['text']?.contains('ist') == true ||
+                      json['text']?.contains('sind') == true ||
+                      json['text']?.contains('seid') == true),
     );
   }
 }

@@ -68,10 +68,23 @@ class _SentenceBuildingMatState extends State<SentenceBuildingMat>
       _isCorrect = true;
     });
     
-    // Delay to show success state, then trigger callback
-    Future.delayed(const Duration(milliseconds: 500), () {
+    // Clear the mat and return cards to available state
+    Future.delayed(const Duration(milliseconds: 1000), () {
+      _clearMatAndNotify();
       widget.onCorrect?.call();
     });
+  }
+
+  void _clearMatAndNotify() {
+    final cardsToReturn = List<Map<String, String>>.from(_placedCards);
+    setState(() {
+      _placedCards.clear();
+      _isCorrect = null;
+    });
+    // Notify parent to return all cards to available state
+    for (final card in cardsToReturn) {
+      widget.onCardRemoved?.call(card['id']!);
+    }
   }
 
   void _setIncorrect() {
@@ -114,12 +127,14 @@ class _SentenceBuildingMatState extends State<SentenceBuildingMat>
             return Transform.translate(
               offset: Offset(_shakeAnimation.value, 0),
               child: DragTarget<Map<String, String>>(
-                onWillAccept: (data) {
+                onWillAcceptWithDetails: (details) {
                   setState(() => _isDragOver = true);
+                  final data = details.data;
                   return data != null && data['id'] != null && data['text'] != null;
                 },
                 onLeave: (_) => setState(() => _isDragOver = false),
-                onAccept: (data) {
+                onAcceptWithDetails: (details) {
+                  final data = details.data;
                   setState(() {
                     _placedCards.add(data);
                     _isCorrect = null;

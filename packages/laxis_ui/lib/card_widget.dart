@@ -8,19 +8,21 @@ class CardWidget extends StatelessWidget {
     this.isUsed = false,
     this.elevation,
     this.onTap,
+    this.hasConjugation = false,
   });
 
   final String text;
   final bool isUsed;
   final double? elevation;
   final VoidCallback? onTap;
+  final bool hasConjugation; // Language module determines this
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap ?? () {
-        const toBeForms = {'bin', 'bist', 'ist', 'sind', 'seid'};
-        if (toBeForms.contains(text)) {
+        // Only show conjugation if explicitly marked by language module
+        if (hasConjugation) {
           showDialog(
             context: context,
             builder: (context) => const ConjugationWidget(),
@@ -52,6 +54,7 @@ class DraggableCardWidget extends StatefulWidget {
     required this.cardId,
     required this.text,
     this.isUsed = false,
+    this.hasConjugation = false,
     this.onDragStarted,
     this.onDragEnd,
   });
@@ -59,6 +62,7 @@ class DraggableCardWidget extends StatefulWidget {
   final String cardId;
   final String text;
   final bool isUsed;
+  final bool hasConjugation;
   final VoidCallback? onDragStarted;
   final VoidCallback? onDragEnd;
 
@@ -73,6 +77,7 @@ class _DraggableCardWidgetState extends State<DraggableCardWidget> {
       return CardWidget(
         text: widget.text,
         isUsed: true,
+        hasConjugation: widget.hasConjugation,
       );
     }
 
@@ -103,9 +108,13 @@ class _DraggableCardWidgetState extends State<DraggableCardWidget> {
       childWhenDragging: CardWidget(
         text: widget.text,
         elevation: 1.0,
+        hasConjugation: widget.hasConjugation,
         onTap: () {}, // Disable tap when dragging
       ),
-      child: CardWidget(text: widget.text),
+      child: CardWidget(
+        text: widget.text,
+        hasConjugation: widget.hasConjugation,
+      ),
     );
   }
 }

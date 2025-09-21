@@ -8,6 +8,8 @@ dependencies:
   flutter:
     sdk: flutter
   shared_preferences: ^2.2.0
+  language_module_interface:
+    path: ../language_module_interface
 
 dev_dependencies:
   lints: ^5.1.1

@@ -43,6 +43,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  language_module_interface:
+    dependency: "direct main"
+    description:
+      path: "../language_module_interface"
+      relative: true
+    source: path
+    version: "0.0.0"
   lints:
     dependency: "direct dev"
     description:

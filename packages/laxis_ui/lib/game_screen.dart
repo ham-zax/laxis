@@ -21,7 +21,7 @@ class _GameScreenState extends State<GameScreen> {
   late final LaxisEngine _engine;
   lmi.Quest? _currentQuest;
   List<lmi.Card> _availableCards = [];
-  Set<String> _usedCardIds = {};
+  final Set<String> _usedCardIds = {};
 
   @override
   void initState() {
@@ -43,14 +43,27 @@ class _GameScreenState extends State<GameScreen> {
       _usedCardIds.clear();
       if (_currentQuest != null) {
         _availableCards = _engine.getCardsForQuest(_currentQuest!);
+        // Shuffle cards for variety (but keep same cards for consistency in single quest)
+        _shuffleCardsRandomly();
       }
     });
+  }
+
+  void _shuffleCardsRandomly() {
+    // 30% chance to reshuffle cards for variety
+    if (DateTime.now().millisecond % 10 < 3) {
+      _availableCards.shuffle();
+    }
   }
 
   void _onQuestCompleted() {
     if (_currentQuest != null) {
       _engine.completeQuest(_currentQuest!.id, widget.level);
-      _loadNextQuest();
+      
+      // Small delay to show completion state, then load next quest
+      Future.delayed(const Duration(milliseconds: 500), () {
+        _loadNextQuest();
+      });
     }
   }
 
@@ -154,6 +167,7 @@ class _GameScreenState extends State<GameScreen> {
                                   cardId: card.id,
                                   text: card.text,
                                   isUsed: isUsed,
+                                  hasConjugation: card.hasConjugation,
                                   onDragStarted: () {
                                     // Optional: Add haptic feedback
                                   },
